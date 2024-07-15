@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EduAssist</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f3f3f3;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center; /* Center align content */
+        }
+        .logo {
+            width: 300px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="EduAssist logo" class="logo img-fluid">
+        <h1 class="mt-4">Welcome to EduAssist!</h1>
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            <div class="form-group">
+                <label for="file">Upload your PDF:</label>
+                <input type="file" class="form-control-file" name="file" id="file" accept=".pdf">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Upload PDF</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
