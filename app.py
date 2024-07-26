@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from llama_index.core import SimpleDirectoryReader
 from sentence_transformers import SentenceTransformer
 import numpy as np
@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = './uploads'
+app.secret_key = 'supersecretkey'
 
 # Initialize embedder
 embedder = SentenceTransformer('all-MiniLM-L6-v2')
@@ -34,7 +35,7 @@ def extract_text_from_pdf(file_path):
 
 # Function to process uploaded PDF
 def process_uploaded_file(filepath):
-    global embedding_store, chunk_store  # Ensure these variables are accessible globally
+    global embedding_store, chunk_store  
     text = extract_text_from_pdf(filepath)
     chunks = chunk_text(text)
     chunk_embeddings = embedder.encode(chunks)
@@ -99,21 +100,36 @@ def index():
 
 @app.route('/query', methods=['GET', 'POST'])
 def query():
+    if 'query_history' not in session:
+        session['query_history'] = []
+
     if request.method == 'POST':
-        user_query = request.form['query']
-        query_length = request.form['length']
-        combined_query = prepare_combined_query(user_query, query_length)
-        response = send_to_mixtral(combined_query)
+        if 'query' in request.form:
+            user_query = request.form['query']
+            query_length = request.form['length']
+            combined_query = prepare_combined_query(user_query, query_length)
+            response = send_to_mixtral(combined_query)
 
-        # Extract the desired content from the response
-        if response and 'content' in response:
-            content = response['content']
-        else:
-            content = 'No relevant information found.'
+            # Extract the desired content from the response
+            if response and 'content' in response:
+                content = response['content']
+            else:
+                content = 'No relevant information found.'
 
-        return render_template('result.html', content=content)
+            # Save query and response to history
+            session['query_history'].append({'query': user_query, 'response': content})
+            session.modified = True
 
-    return render_template('query.html')
+        if 'clear_history' in request.form:
+            session.pop('query_history', None)
+            return redirect(url_for('query'))
+
+    return render_template('query.html', query_history=session['query_history'])
+
+@app.route('/clear_history', methods=['POST'])
+def clear_history():
+    session.pop('query_history', None)
+    return redirect(url_for('query'))
 
 if __name__ == '__main__':
     app.run(debug=True)
