@@ -1,1 +1,1 @@
-# EduAssist---AI-Research-Internship
+# EduAssist-AI-Research-Internship
