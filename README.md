@@ -12,7 +12,7 @@ Many students struggle to extract meaningful information from dense academic pap
 
 ### 🛠 Tech Stack
 
-- Python, OpenAI GPT-4
+- Python, Mixtral LLM
 - LangChain, FAISS
 - EasyOCR, PyMuPDF
 - Streamlit (for deployment)
