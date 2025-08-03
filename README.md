@@ -1,48 +1,55 @@
 # 🧠 EduAssist – AI Research Internship Project
 
-A research project focused on developing an AI-powered assistant to help students extract insights from academic PDFs using OCR, RAG pipelines, and LLMs.
+This project is part of my AI Research Internship, where I developed an AI-powered assistant to help students extract and understand information from academic PDFs. The system combines OCR, semantic search, and large language models to deliver accurate answers and summaries.
 
 ---
 
 ### 🔍 Problem Statement
 
-Many students struggle to extract meaningful information from dense academic papers. EduAssist aims to automate this process using OCR and LLM-powered question-answering.
+Students often struggle to navigate long, complex academic documents. EduAssist automates the extraction and querying process using OCR and a retrieval-augmented generation (RAG) pipeline backed by Mixtral.
 
 ---
 
 ### 🛠 Tech Stack
 
-- Python, Mixtral LLM
-- LangChain, FAISS
-- EasyOCR, PyMuPDF
-- Streamlit (for deployment)
+- **Python** – Core language for the pipeline  
+- **Mixtral LLM** (by Mistral AI) – Used for answer generation and summarization  
+- **LangChain** – Framework for building the RAG pipeline  
+- **FAISS** – Vector similarity search for fast document retrieval  
+- **PyMuPDF** – Extracts structured text from PDFs  
+- **EasyOCR** – Handles image-based PDF content  
 
 ---
 
-### 📁 Project Modules
+### 📁 Project Structure
 
-- `ocr/` → Extracts text from image-based PDFs using OCR  
-- `rag/` → Implements Retrieval-Augmented Generation using vector stores  
-- `notebooks/` → Prototyping and experimentation  
-- `main.py` → End-to-end pipeline
-
----
-
-### 🚀 Demo (Optional)
-
-> Coming soon / Streamlit app link / Screenshot
+- `ocr/` → OCR pipeline for scanned PDFs using PyMuPDF + EasyOCR  
+- `rag/` → RAG pipeline setup using LangChain, FAISS, and Mixtral  
+- `notebooks/` → Experimentation and pipeline testing  
+- `data/` → Sample PDFs for testing  
+- `main.py` → End-to-end pipeline driver  
 
 ---
 
 ### 👨‍💻 My Role
 
-- Built a full OCR pipeline using PyMuPDF + EasyOCR  
-- Integrated RAG with LangChain + FAISS for semantic search  
-- Fine-tuned GPT-4 for academic summarization and QA  
-- Designed experiments and evaluated QA accuracy
+- Built OCR pipeline to handle scanned academic PDFs  
+- Implemented RAG architecture using LangChain, FAISS, and Mixtral  
+- Designed, tested, and refined prompt workflows for QA and summarization  
+- Created scalable text extraction and chunking mechanisms  
+- Evaluated response accuracy and system latency  
+
+---
+
+### 🧪 Sample Output
+
+(Screenshot coming soon)
 
 ---
 
 ### 📫 Let's Connect
 
-[LinkedIn](https://www.linkedin.com/in/dhruvkaul03/) • dhruvpkaul@gmail.com
+- **Email:** dhruvpkaul@gmail.com  
+- **LinkedIn:** [linkedin.com/in/dhruvkaul03](https://www.linkedin.com/in/dhruvkaul03/)
+
+---
